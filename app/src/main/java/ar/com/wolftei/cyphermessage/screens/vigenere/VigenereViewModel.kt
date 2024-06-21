@@ -34,6 +34,16 @@ class VigenereViewModel @Inject constructor(): ViewModel() {
         val desp = _desp.value!!.lowercase().trim()
         val message = _message.value!!.lowercase().trim()
 
+        if( desp.isEmpty() || desp.toIntOrNull() != null ){
+            Log.d("Vigenere", "Clave vacia")
+            _cipher.value = message
+
+            _message.value = ""
+            _desp.value = ""
+            return
+        }
+
+
 //        cifrado vigenere
         var i = 0
         for (char in message){
@@ -44,7 +54,12 @@ class VigenereViewModel @Inject constructor(): ViewModel() {
                 if (i >= desp.length -1){
                     i = 0
                 }
-                val newIndex = (index + alphabet.indexOf(desp[i])) % alphabet.length
+                val keyIndex = alphabet.indexOf(desp[i % desp.length])
+                var newIndex = (index + keyIndex) % alphabet.length
+                //Manejo del desborde:
+                if (newIndex >= alphabet.length) {
+                    newIndex -= alphabet.length
+                }
                 _cipher.value += alphabet[newIndex]
                 i++
             }
@@ -70,14 +85,10 @@ class VigenereViewModel @Inject constructor(): ViewModel() {
                 if (i >= desp.length -1){
                     i = 0
                 }
-                Log.d("TAG", "I: ${i}")
-                Log.d("TAG", "Index: ${index}")
-                Log.d("TAG", "Ubicacion de letra I: ${alphabet.indexOf(desp[i])}")
                 var newIndex = (index - alphabet.indexOf(desp[i])) % alphabet.length
                 if (newIndex < 0){
                     newIndex += alphabet.length
                 }
-                Log.d("TAG", "onDecipher: $newIndex")
                 _cipher.value += alphabet[newIndex]
                 i++
             }

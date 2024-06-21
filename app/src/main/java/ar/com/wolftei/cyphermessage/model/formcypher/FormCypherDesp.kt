@@ -56,7 +56,7 @@ fun FormCypherDesp(dataForm: FormDataClass, context: Context, nombre: String, is
             verticalAlignment = Alignment.CenterVertically
         ) {
             OutlinedTextField(
-                value = dataForm.desp?: "",
+                value = dataForm.desp ?: "",
                 onValueChange = { dataForm.onValueChangeDesp(it) },
                 label = { Text(text = nombre) },
                 modifier = Modifier

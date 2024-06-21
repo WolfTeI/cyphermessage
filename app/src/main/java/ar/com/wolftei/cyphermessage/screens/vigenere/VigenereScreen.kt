@@ -7,6 +7,7 @@ import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.platform.LocalContext
 import androidx.hilt.navigation.compose.hiltViewModel
 import ar.com.wolftei.cyphermessage.dataClass.FormDataClass
+import ar.com.wolftei.cyphermessage.model.banner.BannerAd
 import ar.com.wolftei.cyphermessage.model.composables.Mascara
 import ar.com.wolftei.cyphermessage.model.formcypher.FormCypherDesp
 
@@ -39,5 +40,5 @@ fun Content(vigenereViewModel: VigenereViewModel) {
     )
 
     FormCypherDesp(contenido, context, "Clave",false)
-
+    BannerAd("ca-app-pub-6498019412327819/8603363140")
 }

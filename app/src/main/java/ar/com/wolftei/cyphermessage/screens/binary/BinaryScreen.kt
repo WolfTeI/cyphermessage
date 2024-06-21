@@ -4,8 +4,10 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.hilt.navigation.compose.hiltViewModel
 import ar.com.wolftei.cyphermessage.dataClass.FormDataClass
+import ar.com.wolftei.cyphermessage.model.banner.BannerAd
 import ar.com.wolftei.cyphermessage.model.composables.Mascara
 import ar.com.wolftei.cyphermessage.model.formcypher.FormCypher
 
@@ -32,4 +34,11 @@ fun Content(binaryViewModel: BinaryViewModel) {
         onDecipher = { binaryViewModel.onDecipher() }
     )
     FormCypher(contenido, context)
+    BannerAd("ca-app-pub-6498019412327819/2293105664")
+}
+
+@Preview(showSystemUi = true)
+@Composable
+fun PreviewBinaryScreen() {
+    BinaryScreen()
 }

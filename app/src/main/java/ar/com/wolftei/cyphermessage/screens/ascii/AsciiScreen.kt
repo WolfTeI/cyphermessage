@@ -8,6 +8,7 @@ import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import ar.com.wolftei.cyphermessage.dataClass.FormDataClass
+import ar.com.wolftei.cyphermessage.model.banner.BannerAd
 import ar.com.wolftei.cyphermessage.model.composables.Mascara
 import ar.com.wolftei.cyphermessage.model.formcypher.FormCypher
 
@@ -37,6 +38,7 @@ fun Content(asciiViewModel: AsciiViewModel) {
         onDecipher = { asciiViewModel.onDecipher() }
     )
     FormCypher(contenido, context)
+    BannerAd("ca-app-pub-6498019412327819/2689509728")
 }
 
 

@@ -5,6 +5,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.platform.LocalContext
 import ar.com.wolftei.cyphermessage.dataClass.FormDataClass
+import ar.com.wolftei.cyphermessage.model.banner.BannerAd
 import ar.com.wolftei.cyphermessage.model.composables.Mascara
 import ar.com.wolftei.cyphermessage.model.formcypher.FormCypher
 
@@ -32,4 +33,5 @@ fun Content(octalViewModel: OctalViewModel) {
     )
 
     FormCypher(contenido, context)
+    BannerAd("ca-app-pub-6498019412327819/9916444816")
 }
