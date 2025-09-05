@@ -1,19 +1,19 @@
 package ar.com.wolftei.cyphermessage.screens.morse
 
 import android.util.Log
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
 import javax.inject.Inject
 
 @HiltViewModel
 class MorseViewModel @Inject constructor(): ViewModel() {
-    private val _message: MutableLiveData<String> = MutableLiveData("")
-    val message: LiveData<String> = _message
+    private val _message: MutableStateFlow<String> = MutableStateFlow("")
+    val message: StateFlow<String> = _message
 
-    private val _cipher: MutableLiveData<String> = MutableLiveData("")
-    val cipher: LiveData<String> = _cipher
+    private val _cipher: MutableStateFlow<String> = MutableStateFlow("")
+    val cipher: StateFlow<String> = _cipher
 
     fun onValueChange(newValue: String){
         _message.value = newValue
@@ -21,7 +21,7 @@ class MorseViewModel @Inject constructor(): ViewModel() {
 
     fun onCipher(){
         _cipher.value = ""
-        _cipher.value = _message.value!!.morse()
+        _cipher.value = _message.value.morse()
         _message.value = ""
 
     }

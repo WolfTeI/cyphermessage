@@ -12,5 +12,9 @@ sealed class AppScreens(val route: String) {
     object Caesar : AppScreens("caesar")
     object Vigenere : AppScreens("vigenere")
     object Morse : AppScreens("morse")
+    object Affine : AppScreens("affine")
+    object Xor : AppScreens("xor")
+    object Playfair : AppScreens("playfair")
+    object RailFence : AppScreens("railfence")
 
 }

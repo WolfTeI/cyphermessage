@@ -12,6 +12,10 @@ import ar.com.wolftei.cyphermessage.screens.hexadecimal.HexadecimalScreen
 import ar.com.wolftei.cyphermessage.screens.morse.MorseScreen
 import ar.com.wolftei.cyphermessage.screens.octal.OctalScreen
 import ar.com.wolftei.cyphermessage.screens.vigenere.VigenereScreen
+import ar.com.wolftei.cyphermessage.screens.affine.AffineScreen
+import ar.com.wolftei.cyphermessage.screens.xor.XorScreen
+import ar.com.wolftei.cyphermessage.screens.playfair.PlayfairScreen
+import ar.com.wolftei.cyphermessage.screens.railfence.RailFenceScreen
 
 @Composable
 fun AppNavigation() {
@@ -41,6 +45,18 @@ fun AppNavigation() {
         }
         composable(route = AppScreens.Morse.route) {
             MorseScreen()
+        }
+        composable(route = AppScreens.Affine.route) {
+            AffineScreen()
+        }
+        composable(route = AppScreens.Xor.route) {
+            XorScreen()
+        }
+        composable(route = AppScreens.Playfair.route) {
+            PlayfairScreen()
+        }
+        composable(route = AppScreens.RailFence.route) {
+            RailFenceScreen()
         }
     }
 

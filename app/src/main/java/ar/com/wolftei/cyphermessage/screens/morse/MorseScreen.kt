@@ -1,13 +1,12 @@
 package ar.com.wolftei.cyphermessage.screens.morse
 
-import androidx.compose.material3.Text
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.platform.LocalContext
 import androidx.hilt.navigation.compose.hiltViewModel
 import ar.com.wolftei.cyphermessage.dataClass.FormDataClass
-import ar.com.wolftei.cyphermessage.model.banner.BannerAd
 import ar.com.wolftei.cyphermessage.model.composables.Mascara
 import ar.com.wolftei.cyphermessage.model.formcypher.FormCypher
 
@@ -15,16 +14,16 @@ import ar.com.wolftei.cyphermessage.model.formcypher.FormCypher
 fun MorseScreen(
     morseViewModel: MorseViewModel = hiltViewModel()
 ) {
-    Mascara(titulo = "Morse") {
-        Content(morseViewModel)
+    Mascara(titulo = "Morse", bannerAdUnit = "ca-app-pub-6498019412327819/5315441553") { padding ->
+        Content(morseViewModel, padding)
     }
 }
 
 @Composable
-fun Content(morseViewModel: MorseViewModel) {
+fun Content(morseViewModel: MorseViewModel, padding: PaddingValues) {
     val context = LocalContext.current
-    val message by morseViewModel.message.observeAsState("")
-    val cipher by morseViewModel.cipher.observeAsState("")
+    val message by morseViewModel.message.collectAsState("")
+    val cipher by morseViewModel.cipher.collectAsState("")
 
     val contenido = FormDataClass(
         message = message,
@@ -34,6 +33,5 @@ fun Content(morseViewModel: MorseViewModel) {
         onDecipher = { morseViewModel.onDecipher() }
     )
 
-    FormCypher(contenido, context)
-    BannerAd("ca-app-pub-6498019412327819/9119186703")
+    FormCypher(contenido, context, contentPadding = padding)
 }

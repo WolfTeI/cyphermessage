@@ -1,11 +1,11 @@
 package ar.com.wolftei.cyphermessage.screens.octal
 
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.platform.LocalContext
 import ar.com.wolftei.cyphermessage.dataClass.FormDataClass
-import ar.com.wolftei.cyphermessage.model.banner.BannerAd
 import ar.com.wolftei.cyphermessage.model.composables.Mascara
 import ar.com.wolftei.cyphermessage.model.formcypher.FormCypher
 
@@ -13,16 +13,16 @@ import ar.com.wolftei.cyphermessage.model.formcypher.FormCypher
 fun OctalScreen(
     octalViewModel: OctalViewModel = OctalViewModel()
 ) {
-    Mascara("Octal") {
-        Content(octalViewModel)
+    Mascara("Octal", "ca-app-pub-6498019412327819/9515089751") { padding ->
+        Content(octalViewModel, padding)
     }
 }
 
 @Composable
-fun Content(octalViewModel: OctalViewModel) {
+fun Content(octalViewModel: OctalViewModel, padding: PaddingValues) {
     val context = LocalContext.current
-    val message by octalViewModel.message.observeAsState("")
-    val cipher by octalViewModel.cipher.observeAsState("")
+    val message by octalViewModel.message.collectAsState("")
+    val cipher by octalViewModel.cipher.collectAsState("")
 
     val contenido = FormDataClass(
         message = message,
@@ -32,6 +32,5 @@ fun Content(octalViewModel: OctalViewModel) {
         onDecipher = { octalViewModel.onDecipher() }
     )
 
-    FormCypher(contenido, context)
-    BannerAd("ca-app-pub-6498019412327819/9916444816")
+    FormCypher(contenido, context, contentPadding = padding)
 }

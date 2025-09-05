@@ -1,13 +1,12 @@
 package ar.com.wolftei.cyphermessage.screens.vigenere
 
-import androidx.compose.material3.Text
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.livedata.observeAsState
-import androidx.compose.ui.platform.LocalContext
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.compose.ui.platform.LocalContext
 import ar.com.wolftei.cyphermessage.dataClass.FormDataClass
-import ar.com.wolftei.cyphermessage.model.banner.BannerAd
 import ar.com.wolftei.cyphermessage.model.composables.Mascara
 import ar.com.wolftei.cyphermessage.model.formcypher.FormCypherDesp
 
@@ -15,19 +14,18 @@ import ar.com.wolftei.cyphermessage.model.formcypher.FormCypherDesp
 fun VigenereScreen(
     vigenereViewModel: VigenereViewModel = hiltViewModel()
 ) {
-    Mascara("Vígenere") {
-        Content(vigenereViewModel)
+    Mascara("Vigenere", "ca-app-pub-6498019412327819/2689278215") { padding ->
+        Content(vigenereViewModel, padding)
 
     }
 }
 
 @Composable
-fun Content(vigenereViewModel: VigenereViewModel) {
-
+fun Content(vigenereViewModel: VigenereViewModel, padding: PaddingValues) {
     val context = LocalContext.current
-    val message by vigenereViewModel.message.observeAsState("")
-    val cipher by vigenereViewModel.cipher.observeAsState("")
-    val desp by vigenereViewModel.desp.observeAsState("")
+    val message by vigenereViewModel.message.collectAsState("")
+    val cipher by vigenereViewModel.cipher.collectAsState("")
+    val desp by vigenereViewModel.desp.collectAsState("")
 
     val contenido = FormDataClass(
         message = message,
@@ -39,6 +37,5 @@ fun Content(vigenereViewModel: VigenereViewModel) {
         onDecipher = { vigenereViewModel.onDecipher() }
     )
 
-    FormCypherDesp(contenido, context, "Clave",false)
-    BannerAd("ca-app-pub-6498019412327819/8603363140")
+    FormCypherDesp(contenido, context, "Clave", false, contentPadding = padding)
 }

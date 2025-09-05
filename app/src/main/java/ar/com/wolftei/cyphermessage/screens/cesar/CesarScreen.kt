@@ -1,13 +1,12 @@
 package ar.com.wolftei.cyphermessage.screens.cesar
 
-import androidx.compose.material3.Text
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.platform.LocalContext
 import androidx.hilt.navigation.compose.hiltViewModel
 import ar.com.wolftei.cyphermessage.dataClass.FormDataClass
-import ar.com.wolftei.cyphermessage.model.banner.BannerAd
 import ar.com.wolftei.cyphermessage.model.composables.Mascara
 import ar.com.wolftei.cyphermessage.model.formcypher.FormCypherDesp
 
@@ -15,17 +14,17 @@ import ar.com.wolftei.cyphermessage.model.formcypher.FormCypherDesp
 fun CesarScreen(
     cesarViewModel: CesarViewModel = hiltViewModel()
 ) {
-    Mascara(titulo = "Cesar") {
-        Content(cesarViewModel)
+    Mascara(titulo = "Cesar", bannerAdUnit = "ca-app-pub-6498019412327819/3141253096") { padding ->
+        Content(cesarViewModel, padding)
     }
 }
 
 @Composable
-fun Content(cesarViewModel: CesarViewModel) {
+fun Content(cesarViewModel: CesarViewModel, padding: PaddingValues) {
     val context = LocalContext.current
-    val message by cesarViewModel.message.observeAsState("")
-    val cipher by cesarViewModel.cipher.observeAsState("")
-    val desp by cesarViewModel.desp.observeAsState("")
+    val message by cesarViewModel.message.collectAsState("")
+    val cipher by cesarViewModel.cipher.collectAsState("")
+    val desp by cesarViewModel.desp.collectAsState("")
 
     val contenido = FormDataClass(
         message = message,
@@ -37,6 +36,5 @@ fun Content(cesarViewModel: CesarViewModel) {
         onDecipher = { cesarViewModel.onDecipher() }
     )
 
-    FormCypherDesp(contenido, context, "Desplazamiento", true)
-    BannerAd("ca-app-pub-6498019412327819/4723827883" )
+    FormCypherDesp(contenido, context, "Desplazamiento", true, contentPadding = padding)
 }
